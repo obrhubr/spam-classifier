@@ -87,7 +87,7 @@ export default function Main () {
                 <textarea id="textarea-prediction" className="h-full w-1/2 flex focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md p-2" type="text" aria-label="Filter projects" placeholder="Email Text" />
                 <div className="flex-auto flex w-1/2">
                     <button onClick={handleClickPrediction} className="w-1/2 flex items-center justify-center rounded-md bg-gray-300 text-gray-700 hover:bg-gray-800 hover:text-white text-lg" type="submit">Get Prediction</button>
-                    <p className="w-1/2 flex items-center justify-center rounded-md border-gray-500 border-2 text-white p-2 ml-3">{prediction}</p>
+                    <p className="w-1/2 flex items-center justify-center rounded-md border-gray-500 border-2 text-gray-700 p-2 ml-3">{prediction}</p>
                 </div>
             </div>
             <div className="flex space-x-3 mb-4 text-sm font-medium m-8 h-1/3">
