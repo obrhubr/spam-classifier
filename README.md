@@ -7,5 +7,5 @@ To deploy the services I used `docker-compose`. The different servies are:
 - `api` the main api, reuniting all the api calls in nodeJS
 
 ### The Frontend:
-![frontend](img/main.png)
+![frontend](.github/main.png)
 You can get the status of the application up-top, which will tell you if a model exists and if new data exists. Their are also `retrain from scratch` and `continue training` buttons. Then you can actually get the predictions and at the bottom you can add new mails and label them.
