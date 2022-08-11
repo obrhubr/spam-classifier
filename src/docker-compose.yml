@@ -14,7 +14,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
   ml-api:
-    image: nikl/spam-classifier-ml-api
+    build: ./ml/
     ports:
       - "3003:3003"
     command: ["python3", "main.py"]
@@ -29,7 +29,7 @@ services:
       - MONGO_USERNAME=root
       - MONGO_PASSWORD=root
   ml-train:
-    image: nikl/spam-classifier-ml-train
+    build: ./mltrain/
     ports:
       - "3002:3002"
     command: ["python3", "main.py"]
@@ -43,7 +43,7 @@ services:
       - MONGO_USERNAME=root
       - MONGO_PASSWORD=root
   node-api:
-    image: nikl/spam-classifier-node
+    build: ./api/
     ports:
       - "3001:3001"
     depends_on:
@@ -56,7 +56,7 @@ services:
       - MONGO_USERNAME=root
       - MONGO_PASSWORD=root
   front:
-    image: nikl/spam-classifier-front
+    build: ./front/
     depends_on:
       - node-api
     ports:
