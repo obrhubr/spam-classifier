@@ -60,43 +60,29 @@ ml-train_1  | Epoch 8/10
 75/75 [==============================] - 0s 968us/step - loss: 0.0952 - acc: 0.9639 - val_loss: 0.0975 - val_acc: 0.9617
 ```
 
-Once the model is trained, the user can get a prediction on some text the put in:
+Once the model is trained, the user can get a prediction on any email text they choose:
 
 ![Prediction](.github/prediction.png)
 
 In this case, the email is classified as not spam. The probability that this is spam is 14% according to the model.
 
-The user can also add labeled data. This would correspond to someone manually putting emails into their spam folder in gmail for example. 
+The user can also add labeled data. This would correspond to someone manually putting emails into their spam folder in gmail for example. First we add an example of a normal email and then we enter an example of a classic spam email.
 
-![Not spam](.github/classify-yes.png)
 ![Is spam](.github/classify-non.png)
+![Not spam](.github/classify-yes.png)
 
-Once the user has added data, they can press "Train with newest data". The machine learning service will then fetch the new data from the mongodb database and continue training the model on that data:
-
-![Retrain](.github/retrain.png)
+Once the user has added data, they can press "Train with newest data". The machine learning service will then fetch the new data from the mongodb database and continue training the model on that data. The app doesn't stop working at any point, it will automatically replace and reload the model once the training is finished and the user experience will not be impacted at any point:
 
 ```
-ml-train_1  | Found:  {'_id': ObjectId('62f549e1a7f151b5b68c0846'), 'text': 'Hi,\nI love flowers and how they smell', 'label': 0, '__v': 0}
-ml-train_1  | Found:  {'_id': ObjectId('62f54a0aa7f151e9a58c0847'), 'text': "Could you send me your credit-card, I need money, it's not a spam I swear!", 'label': 1, '__v': 0}
-ml-train_1  | Epoch 1/10
+----> The app found two new emails as training data and adds them to the dataset:
+
+Found:  {'_id': ObjectId('62f549e1a7f151b5b68c0846'), 'text': 'Hi,\nI love flowers and how they smell', 'label': 0, '__v': 0}
+Found:  {'_id': ObjectId('62f54a0aa7f151e9a58c0847'), 'text': "Could you send me your credit-card, I need money, it's not a spam I swear!", 'label': 1, '__v': 0}
+
+----> It then continues training the previous model on the newest dataset:
+
+Epoch 1/10
 1/1 [==============================] - 0s 362ms/step - loss: 0.4460 - acc: 1.0000 - val_loss: 2.1632 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 2/10
-1/1 [==============================] - 0s 12ms/step - loss: 0.3959 - acc: 1.0000 - val_loss: 2.1394 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 3/10
-1/1 [==============================] - 0s 11ms/step - loss: 0.3647 - acc: 1.0000 - val_loss: 2.1221 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 4/10
-1/1 [==============================] - 0s 14ms/step - loss: 0.3411 - acc: 1.0000 - val_loss: 2.1085 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 5/10
-1/1 [==============================] - 0s 13ms/step - loss: 0.3219 - acc: 1.0000 - val_loss: 2.0972 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 6/10
-1/1 [==============================] - 0s 12ms/step - loss: 0.3056 - acc: 1.0000 - val_loss: 2.0876 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 7/10
-1/1 [==============================] - 0s 12ms/step - loss: 0.2914 - acc: 1.0000 - val_loss: 2.0792 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 8/10
-1/1 [==============================] - 0s 13ms/step - loss: 0.2787 - acc: 1.0000 - val_loss: 2.0719 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 9/10
-1/1 [==============================] - 0s 14ms/step - loss: 0.2673 - acc: 1.0000 - val_loss: 2.0653 - val_acc: 0.0000e+00
-ml-train_1  | Epoch 10/10
-1/1 [==============================] - 0s 12ms/step - loss: 0.2569 - acc: 1.0000 - val_loss: 2.0595 - val_acc: 0.0000e+00
+...
 ```
 
